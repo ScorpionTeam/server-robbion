@@ -40,4 +40,6 @@ public class IndexController {
     public ModelMap post(@RequestBody Seller seller){
         return indexService.post(seller);
     }
+
+
 }
