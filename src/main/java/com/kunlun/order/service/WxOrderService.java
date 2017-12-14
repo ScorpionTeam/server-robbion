@@ -27,4 +27,12 @@ public interface WxOrderService {
      * @return
      */
     ModelMap refund(Order order);
+
+    /**
+     * 查询订单详情
+     *
+     * @param orderId
+     * @return
+     */
+    ModelMap findByOrderId(Long orderId);
 }
