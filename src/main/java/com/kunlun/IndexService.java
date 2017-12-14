@@ -17,4 +17,5 @@ public interface IndexService {
 
     ModelMap hello1(String test);
 
+    ModelMap post(Seller seller);
 }

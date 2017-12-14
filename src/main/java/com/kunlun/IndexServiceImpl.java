@@ -11,8 +11,13 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.client.RestTemplate;
+
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author by kunlun
@@ -42,7 +47,13 @@ public class IndexServiceImpl implements IndexService {
 
     @Override
     public ModelMap hello1(String test) {
-        ModelMap map = restTemplate.getForObject("http://service-order/hello1/param",ModelMap.class,test);
+        ModelMap map = restTemplate.getForObject("http://service-order/hello1/param/"+test,ModelMap.class);
+        return map;
+    }
+
+    @Override
+    public ModelMap post(Seller seller) {
+        ModelMap map = restTemplate.postForObject("http://service-order/hello/post",seller,ModelMap.class);
         return map;
     }
 
