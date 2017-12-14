@@ -1,5 +1,10 @@
 package com.kunlun;
 
+import com.kunlun.result.BaseResult;
+import com.kunlun.result.SuccessResult;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
+
 /**
  * @author by kunlun
  * @version <0.1>
@@ -7,5 +12,7 @@ package com.kunlun;
  */
 public interface IndexService {
 
-    String hello();
+    ModelMap hello();
+
+    ModelMap hello1(String test);
 }

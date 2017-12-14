@@ -1,7 +1,12 @@
 package com.kunlun;
 
+import com.kunlun.result.BaseResult;
+import com.kunlun.result.SuccessResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +24,12 @@ public class IndexController {
     private IndexService indexService;
 
     @GetMapping("/hello")
-    public String hello(){
+    public ModelMap hello() {
         return indexService.hello();
+    }
+
+    @GetMapping("/hello/param/{test}")
+    public ModelMap hello1(@PathVariable String test) {
+        return indexService.hello1(test);
     }
 }

@@ -1,8 +1,17 @@
 package com.kunlun;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.alibaba.fastjson.JSON;
+import com.kunlun.entity.Seller;
+import com.kunlun.result.BaseResult;
+import com.kunlun.result.SuccessResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -13,17 +22,32 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class IndexServiceImpl implements IndexService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexServiceImpl.class);
+
+
     @Autowired
     private RestTemplate restTemplate;
 
 
-    @HystrixCommand(fallbackMethod = "fallback")
+    /**
+     * 使用ModelMap接收参数
+     * @return
+     */
+    //    @HystrixCommand(fallbackMethod = "fallback")
     @Override
-    public String hello() {
-        return restTemplate.getForObject("http://service-order/hello", String.class);
+    public ModelMap hello() {
+        ModelMap map = restTemplate.getForObject("http://service-order/hello",ModelMap.class);
+        return map;
     }
 
-    public String fallback(){
-        return " Ribbon Server Down";
+    @Override
+    public ModelMap hello1(String test) {
+        ModelMap map = restTemplate.getForObject("http://service-order/hello1/param",ModelMap.class,test);
+
+        return map;
+    }
+
+    public ModelMap fallback() {
+        return new ModelMap("error","RibbonError");
     }
 }
