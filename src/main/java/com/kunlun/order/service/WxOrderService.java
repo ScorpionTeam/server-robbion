@@ -1,5 +1,6 @@
 package com.kunlun.order.service;
 
+import com.kunlun.entity.Order;
 import org.springframework.ui.ModelMap;
 
 /**
@@ -18,4 +19,12 @@ public interface WxOrderService {
      * @return
      */
     ModelMap findByUserId(int pageNo, int pageSize, String wxCode, String orderStatus);
+
+    /**
+     * 退款
+     *
+     * @param order
+     * @return
+     */
+    ModelMap refund(Order order);
 }
