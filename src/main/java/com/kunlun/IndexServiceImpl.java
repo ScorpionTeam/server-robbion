@@ -43,7 +43,6 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public ModelMap hello1(String test) {
         ModelMap map = restTemplate.getForObject("http://service-order/hello1/param",ModelMap.class,test);
-
         return map;
     }
 
