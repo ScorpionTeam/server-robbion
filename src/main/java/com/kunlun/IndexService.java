@@ -1,5 +1,6 @@
 package com.kunlun;
 
+import com.kunlun.entity.Seller;
 import com.kunlun.result.BaseResult;
 import com.kunlun.result.SuccessResult;
 import org.springframework.http.ResponseEntity;
@@ -15,4 +16,6 @@ public interface IndexService {
     ModelMap hello();
 
     ModelMap hello1(String test);
+
+    ModelMap post(Seller seller);
 }
