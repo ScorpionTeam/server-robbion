@@ -1,6 +1,7 @@
 package com.kunlun.order.controller;
 
-import com.kunlun.entity.Order;
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.kunlun.order.service.WxOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -37,12 +38,12 @@ public class WxOrderController {
     /**
      * 退款
      *
-     * @param order 订单
+     * @param object 订单
      * @return
      */
     @PostMapping("/refund")
-    public ModelMap refund(@RequestBody Order order) {
-        return wxOrderService.refund(order);
+    public ModelMap refund(@RequestBody JSONObject object) {
+        return wxOrderService.refund(object);
     }
 
     /**

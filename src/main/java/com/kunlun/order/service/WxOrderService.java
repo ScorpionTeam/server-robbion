@@ -1,6 +1,6 @@
 package com.kunlun.order.service;
 
-import com.kunlun.entity.Order;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.ui.ModelMap;
 
 /**
@@ -23,10 +23,10 @@ public interface WxOrderService {
     /**
      * 退款
      *
-     * @param order
+     * @param object
      * @return
      */
-    ModelMap refund(Order order);
+    ModelMap refund(JSONObject object);
 
     /**
      * 查询订单详情
