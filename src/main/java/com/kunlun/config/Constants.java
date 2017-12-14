@@ -7,7 +7,22 @@ package com.kunlun.config;
  */
 public class Constants {
 
-    public static final String SELLER_ORDER = "http://service-order/seller/order/";
 
-    public static final String ORDER_FIND_CONDITION = SELLER_ORDER + "findByCondition/";
+    public static final String SERVER_NAME = "http://service-order/";
+
+    /**
+     * 商家模块
+     */
+    public static final String SELLER_MODULE = "seller/order/";
+
+    /**
+     * 微信模块
+     */
+    public static final String WX_MODULE = "wx/order/";
+
+    /**
+     * 运营模块
+     */
+    public static final String MODULE = "order/";
+
 }
