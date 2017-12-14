@@ -27,7 +27,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      */
     @Override
     public ModelMap findByUserId(int pageNo, int pageSize, String wxCode, String orderStatus) {
-        String url = Constants.WX_ORDER + pageNo + "/" + pageSize + "/" + wxCode + "/" + orderStatus;
+        String url = Constants.FIND_BY_USER_ID + pageNo + "/" + pageSize + "/" + wxCode + "/" + orderStatus;
         return restTemplate.getForObject(url, ModelMap.class);
     }
 }

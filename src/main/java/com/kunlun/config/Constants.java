@@ -18,7 +18,12 @@ public class Constants {
     public static final String ORDER_FIND_CONDITION = SELLER_ORDER + "findByCondition/";
 
     /**
-     * 微信 查询我的订单列表
+     * 微信订单url
      */
     public static final String WX_ORDER = "http://service-order/wx/order/";
+
+    /**
+     * 微信 查询我的订单列表
+     */
+    public static final String FIND_BY_USER_ID = WX_ORDER + "findByUserId/";
 }

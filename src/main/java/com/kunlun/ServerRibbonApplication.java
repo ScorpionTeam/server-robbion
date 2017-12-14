@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringCloudApplication
 //@EnableDiscoveryClient
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
+@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 public class ServerRibbonApplication {
 
     @Bean
