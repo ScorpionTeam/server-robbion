@@ -86,6 +86,19 @@ public class WxOrderServiceImpl implements WxOrderService {
         return restTemplate.getForObject(url, ModelMap.class);
     }
 
+    /**
+     * 确认收货
+     *
+     * @param id
+     * @param ipAddress
+     * @return
+     */
+    @Override
+    public ModelMap confirmReceipt(Long id, String ipAddress) {
+        String url = Constants.SERVER_NAME + Constants.WX_MODULE + "confirmReceipt/" + id;
+        return restTemplate.getForObject(url, ModelMap.class);
+    }
+
 
     /**
      * 方法错误回传

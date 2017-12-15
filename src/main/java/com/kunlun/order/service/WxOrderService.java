@@ -52,4 +52,13 @@ public interface WxOrderService {
      * @return
      */
     ModelMap cancelOrder(Long id, String ipAddress);
+
+    /**
+     * 确认收货
+     *
+     * @param id
+     * @param ipAddress
+     * @return
+     */
+    ModelMap confirmReceipt(Long id, String ipAddress);
 }

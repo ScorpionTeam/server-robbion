@@ -74,7 +74,7 @@ public class WxOrderController {
     /**
      * 取消订单
      *
-     * @param id 订单id
+     * @param id      订单id
      * @param request 请求
      * @return
      */
@@ -82,5 +82,18 @@ public class WxOrderController {
     public ModelMap cancelOrder(@PathVariable Long id, HttpServletRequest request) {
         String ipAddress = IpUtil.getIPAddress(request);
         return wxOrderService.cancelOrder(id, ipAddress);
+    }
+
+    /**
+     * 确认收货
+     *
+     * @param id      订单id
+     * @param request 请求
+     * @return
+     */
+    @GetMapping("/confirmReceipt/{id}")
+    public ModelMap confirmReceipt(@PathVariable Long id, HttpServletRequest request) {
+        String ipAddress = IpUtil.getIPAddress(request);
+        return wxOrderService.confirmReceipt(id, ipAddress);
     }
 }
