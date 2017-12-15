@@ -43,4 +43,13 @@ public interface WxOrderService {
      * @return
      */
     ModelMap estimate(JSONObject object);
+
+    /**
+     * 取消订单
+     *
+     * @param id
+     * @param ipAddress
+     * @return
+     */
+    ModelMap cancelOrder(Long id, String ipAddress);
 }

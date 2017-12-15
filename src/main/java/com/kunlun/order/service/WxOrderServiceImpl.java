@@ -73,6 +73,19 @@ public class WxOrderServiceImpl implements WxOrderService {
         return restTemplate.postForObject(url, object, ModelMap.class);
     }
 
+    /**
+     * 取消订单
+     *
+     * @param id
+     * @param ipAddress
+     * @return
+     */
+    @Override
+    public ModelMap cancelOrder(Long id, String ipAddress) {
+        String url = Constants.SERVER_NAME + Constants.WX_MODULE + "cancelOrder/" + id;
+        return restTemplate.getForObject(url, ModelMap.class);
+    }
+
 
     /**
      * 方法错误回传
