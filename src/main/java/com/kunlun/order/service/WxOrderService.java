@@ -35,4 +35,12 @@ public interface WxOrderService {
      * @return
      */
     ModelMap findByOrderId(Long orderId);
+
+    /**
+     * 签收后评价
+     *
+     * @param object
+     * @return
+     */
+    ModelMap estimate(JSONObject object);
 }

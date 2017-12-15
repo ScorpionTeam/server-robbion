@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.client.RestTemplate;
 
+
 /**
  * @author by fk
  * @created on 2017/12/14.
@@ -47,6 +48,7 @@ public class WxOrderServiceImpl implements WxOrderService {
         return restTemplate.postForObject(url, object, ModelMap.class);
     }
 
+
     /**
      * 查询订单详情
      *
@@ -55,13 +57,22 @@ public class WxOrderServiceImpl implements WxOrderService {
      */
     @Override
     public ModelMap findByOrderId(Long orderId) {
-        ModelMap modelMap = new ModelMap();
-        if (orderId == null) {
-            return modelMap.addAttribute("002", "参数错误");
-        }
         String url = Constants.SERVER_NAME + Constants.WX_MODULE + "findByOrderId/" + orderId;
         return restTemplate.getForObject(url, ModelMap.class);
     }
+
+    /**
+     * 签收后评价
+     *
+     * @param object
+     * @return
+     */
+    @Override
+    public ModelMap estimate(JSONObject object) {
+        String url = Constants.SERVER_NAME + Constants.WX_MODULE + "estimate";
+        return restTemplate.postForObject(url, object, ModelMap.class);
+    }
+
 
     /**
      * 方法错误回传
@@ -71,4 +82,5 @@ public class WxOrderServiceImpl implements WxOrderService {
     public ModelMap fallback(JSONObject object) {
         return new ModelMap("ERROR", "服务器开小差.....请稍后再试");
     }
+
 }

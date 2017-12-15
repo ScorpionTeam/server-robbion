@@ -1,7 +1,6 @@
 package com.kunlun.order.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.kunlun.order.service.WxOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -55,6 +54,17 @@ public class WxOrderController {
     @GetMapping("/findByOrderId/{orderId}")
     public ModelMap findByOrderId(@PathVariable Long orderId) {
         return wxOrderService.findByOrderId(orderId);
+    }
+
+    /**
+     * 签收后评价
+     *
+     * @param object 订单
+     * @return
+     */
+    @PostMapping("/estimate")
+    public ModelMap estimate(@RequestBody JSONObject object) {
+        return wxOrderService.estimate(object);
     }
 
 }
