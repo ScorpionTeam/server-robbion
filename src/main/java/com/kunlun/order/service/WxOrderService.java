@@ -12,13 +12,10 @@ public interface WxOrderService {
     /**
      * 查询我的订单列表
      *
-     * @param pageNo
-     * @param pageSize
-     * @param wxCode
-     * @param orderStatus
+     * @param object
      * @return
      */
-    ModelMap findByUserId(int pageNo, int pageSize, String wxCode, String orderStatus);
+    ModelMap findByWxCode(JSONObject object);
 
     /**
      * 退款
@@ -53,12 +50,5 @@ public interface WxOrderService {
      */
     ModelMap cancelOrder(Long id, String ipAddress);
 
-    /**
-     * 确认收货
-     *
-     * @param id
-     * @param ipAddress
-     * @return
-     */
     ModelMap confirmReceipt(Long id, String ipAddress);
 }

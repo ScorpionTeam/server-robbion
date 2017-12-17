@@ -22,17 +22,14 @@ public class WxOrderServiceImpl implements WxOrderService {
     /**
      * 查询我的订单列表
      *
-     * @param pageNo
-     * @param pageSize
-     * @param wxCode
-     * @param orderStatus
+     * @param object
      * @return
      */
-    @HystrixCommand(fallbackMethod = "fallback")
+//    @HystrixCommand(fallbackMethod = "fallback")
     @Override
-    public ModelMap findByUserId(int pageNo, int pageSize, String wxCode, String orderStatus) {
-        String url = Constants.SERVER_NAME + Constants.WX_MODULE + "findByUserId/" + pageNo + "/" + pageSize + "/" + wxCode + "/" + orderStatus;
-        return restTemplate.getForObject(url, ModelMap.class);
+    public ModelMap findByWxCode(JSONObject object) {
+        String url = Constants.SERVER_NAME + Constants.WX_MODULE + "findByWxCode";
+        return restTemplate.postForObject(url, object, ModelMap.class);
     }
 
     /**
@@ -95,7 +92,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      */
     @Override
     public ModelMap confirmReceipt(Long id, String ipAddress) {
-        String url = Constants.SERVER_NAME + Constants.WX_MODULE + "confirmReceipt/" + id;
+        String url = Constants.SERVER_NAME + Constants.WX_MODULE + id;
         return restTemplate.getForObject(url, ModelMap.class);
     }
 
@@ -108,5 +105,4 @@ public class WxOrderServiceImpl implements WxOrderService {
     public ModelMap fallback(JSONObject object) {
         return new ModelMap("ERROR", "服务器开小差.....请稍后再试");
     }
-
 }
