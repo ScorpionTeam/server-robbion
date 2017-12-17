@@ -38,7 +38,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @param object
      * @return
      */
-    @HystrixCommand(fallbackMethod = "fallback")
+//    @HystrixCommand(fallbackMethod = "fallback")
     @Override
     public ModelMap refund(JSONObject object) {
         String url = Constants.SERVER_NAME + Constants.WX_MODULE + "refund";
