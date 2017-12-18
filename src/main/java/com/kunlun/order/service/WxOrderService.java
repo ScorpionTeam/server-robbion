@@ -44,11 +44,11 @@ public interface WxOrderService {
     /**
      * 取消订单
      *
-     * @param id
+     * @param object
      * @param ipAddress
      * @return
      */
-    ModelMap cancelOrder(Long id, String ipAddress);
+    ModelMap cancelOrder(JSONObject object, String ipAddress);
 
     ModelMap confirmReceipt(Long id, String ipAddress);
 }

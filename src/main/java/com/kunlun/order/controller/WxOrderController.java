@@ -68,14 +68,14 @@ public class WxOrderController {
     /**
      * 取消订单
      *
-     * @param id      订单id
+     * @param object  订单
      * @param request 请求
      * @return
      */
-    @GetMapping("/cancelOrder/{id}")
-    public ModelMap cancelOrder(@PathVariable Long id, HttpServletRequest request) {
+    @PostMapping("/cancelOrder")
+    public ModelMap cancelOrder(@RequestBody JSONObject object, HttpServletRequest request) {
         String ipAddress = IpUtil.getIPAddress(request);
-        return wxOrderService.cancelOrder(id, ipAddress);
+        return wxOrderService.cancelOrder(object, ipAddress);
     }
 
     /**
