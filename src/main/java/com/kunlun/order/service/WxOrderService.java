@@ -28,10 +28,10 @@ public interface WxOrderService {
     /**
      * 查询订单详情
      *
-     * @param orderId
+     * @param object
      * @return
      */
-    ModelMap findByOrderId(Long orderId);
+    ModelMap findByOrderId(JSONObject object);
 
     /**
      * 签收后评价

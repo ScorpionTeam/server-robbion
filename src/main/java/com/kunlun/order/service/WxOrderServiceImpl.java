@@ -49,13 +49,13 @@ public class WxOrderServiceImpl implements WxOrderService {
     /**
      * 查询订单详情
      *
-     * @param orderId
+     * @param object
      * @return
      */
     @Override
-    public ModelMap findByOrderId(Long orderId) {
-        String url = Constants.SERVER_NAME + Constants.WX_MODULE + "findByOrderId/" + orderId;
-        return restTemplate.getForObject(url, ModelMap.class);
+    public ModelMap findByOrderId(JSONObject object) {
+        String url = Constants.SERVER_NAME + Constants.WX_MODULE + "findByOrderId";
+        return restTemplate.postForObject(url, object, ModelMap.class);
     }
 
     /**
