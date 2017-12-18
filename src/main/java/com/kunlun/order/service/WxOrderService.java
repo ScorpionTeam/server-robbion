@@ -50,5 +50,12 @@ public interface WxOrderService {
      */
     ModelMap cancelOrder(JSONObject object, String ipAddress);
 
-    ModelMap confirmReceipt(Long id, String ipAddress);
+    /**
+     * 确认收货
+     *
+     * @param object
+     * @param ipAddress
+     * @return
+     */
+    ModelMap confirmByGood(JSONObject object, String ipAddress);
 }

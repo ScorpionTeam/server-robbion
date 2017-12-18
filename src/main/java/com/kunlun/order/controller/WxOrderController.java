@@ -1,6 +1,7 @@
 package com.kunlun.order.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.kunlun.order.service.WxOrderService;
 import com.kunlun.utils.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,15 +80,15 @@ public class WxOrderController {
     }
 
     /**
-     * 取消订单
+     * 确认收货
      *
-     * @param id      订单id
+     * @param object  订单
      * @param request 请求
      * @return
      */
-    @GetMapping("/confirmReceipt/{id}")
-    public ModelMap confirmReceipt(@PathVariable Long id, HttpServletRequest request) {
+    @PostMapping("/confirmByGood")
+    public ModelMap confirmByGood(@RequestBody JSONObject object, HttpServletRequest request) {
         String ipAddress = IpUtil.getIPAddress(request);
-        return wxOrderService.confirmReceipt(id, ipAddress);
+        return wxOrderService.confirmByGood(object, ipAddress);
     }
 }
