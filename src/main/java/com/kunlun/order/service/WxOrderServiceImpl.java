@@ -3,6 +3,7 @@ package com.kunlun.order.service;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.config.Constants;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -93,6 +94,25 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @param ipAddress
      * @return
      */
+//    @HystrixCommand(fallbackMethod = "fallback",
+//            线程池配置
+//            threadPoolProperties = {
+//                核心线程池大小和线程池最大大小
+//                @HystrixProperty(name = "coreSize", value = "30"),
+//                队列最大长度
+//                @HystrixProperty(name = "maxQueueSize", value = "100"),
+//                限定当前队列大小 实际队列大小由该参数设置
+//                @HystrixProperty(name = "queueSizeRejectionThreshold", value = "20")
+//          },
+//            命令属性配置
+//            commandProperties = {
+//                当隔离策略为THREAD时，当执行线程执行超时时，是否进行中断处理 默认为true  value值为毫秒
+//                @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000"),
+//                @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000") , fallbackMethod = "fallback"
+//                熔断触发的最小个数/10s 默认值是20
+//                @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1")
+//          }
+
     @HystrixCommand(fallbackMethod = "parameterFallback")
     @Override
     public ModelMap confirmByGood(JSONObject object, String ipAddress) {
