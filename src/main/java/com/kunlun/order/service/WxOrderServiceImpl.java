@@ -25,7 +25,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @param object
      * @return
      */
-//    @HystrixCommand(fallbackMethod = "fallback")
+    @HystrixCommand(fallbackMethod = "objectFallback")
     @Override
     public ModelMap findByWxCode(JSONObject object) {
         String url = Constants.SERVER_NAME + Constants.WX_MODULE + "findByWxCode";
@@ -38,7 +38,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @param object
      * @return
      */
-//    @HystrixCommand(fallbackMethod = "fallback")
+    @HystrixCommand(fallbackMethod = "objectFallback")
     @Override
     public ModelMap refund(JSONObject object) {
         String url = Constants.SERVER_NAME + Constants.WX_MODULE + "refund";
@@ -52,6 +52,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @param object
      * @return
      */
+    @HystrixCommand(fallbackMethod = "objectFallback")
     @Override
     public ModelMap findByOrderId(JSONObject object) {
         String url = Constants.SERVER_NAME + Constants.WX_MODULE + "findByOrderId";
@@ -64,6 +65,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @param object
      * @return
      */
+    @HystrixCommand(fallbackMethod = "objectFallback")
     @Override
     public ModelMap estimate(JSONObject object) {
         String url = Constants.SERVER_NAME + Constants.WX_MODULE + "estimate";
@@ -77,6 +79,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @param ipAddress
      * @return
      */
+    @HystrixCommand(fallbackMethod = "parameterFallback")
     @Override
     public ModelMap cancelOrder(JSONObject object, String ipAddress) {
         String url = Constants.SERVER_NAME + Constants.WX_MODULE + "cancelOrder";
@@ -90,6 +93,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @param ipAddress
      * @return
      */
+    @HystrixCommand(fallbackMethod = "parameterFallback")
     @Override
     public ModelMap confirmByGood(JSONObject object, String ipAddress) {
         String url = Constants.SERVER_NAME + Constants.WX_MODULE + "confirmByGood";
@@ -102,7 +106,16 @@ public class WxOrderServiceImpl implements WxOrderService {
      *
      * @return
      */
-    public ModelMap fallback(JSONObject object) {
+    public ModelMap objectFallback(JSONObject object) {
+        return new ModelMap("ERROR", "服务器开小差.....请稍后再试");
+    }
+
+    /**
+     * 方法错误回传
+     *
+     * @return
+     */
+    public ModelMap parameterFallback(JSONObject object, String ipAddress) {
         return new ModelMap("ERROR", "服务器开小差.....请稍后再试");
     }
 }
