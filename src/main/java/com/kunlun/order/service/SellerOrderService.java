@@ -1,5 +1,7 @@
 package com.kunlun.order.service;
 
+
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.ui.ModelMap;
 
 /**
@@ -10,12 +12,10 @@ import org.springframework.ui.ModelMap;
 public interface SellerOrderService {
 
     /**
-     * 条件查询商家 订单列表
-     * @param pageNo
-     * @param pageSize
+     * 订单列表
+     *
+     * @param object
      * @return
      */
-    ModelMap findByCondition(Integer pageNo,Integer pageSize);
-
-
+    ModelMap findByCondition(JSONObject object);
 }

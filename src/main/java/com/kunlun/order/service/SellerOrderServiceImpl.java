@@ -1,5 +1,6 @@
 package com.kunlun.order.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.config.Constants;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,33 @@ public class SellerOrderServiceImpl implements SellerOrderService {
     private RestTemplate restTemplate;
 
     /**
-     * 分页查询商家 订单列表
+     * 订单列表
      *
-     * @param pageNo
-     * @param pageSize
+     * @param object
      * @return
      */
-    @HystrixCommand(fallbackMethod = "findByConditionFallBack")
+    @HystrixCommand(fallbackMethod = "objectFallback")
     @Override
-    public ModelMap findByCondition(Integer pageNo, Integer pageSize) {
-        String url = Constants.SERVER_NAME + Constants.SELLER_MODULE + "findByCondition/" + pageNo + "/" + pageSize;
-        return restTemplate.getForObject(url, ModelMap.class);
+    public ModelMap findByCondition(JSONObject object) {
+        String url = Constants.SERVER_NAME + Constants.SELLER_MODULE + "findByCondition";
+        return restTemplate.postForObject(url, object, ModelMap.class);
     }
 
-    public ModelMap findByConditionFallBack(Integer pageNo, Integer pageSize) {
-        ModelMap map = new ModelMap();
-        map.addAttribute("ERROR", "服务繁忙请稍后重试");
-        return map;
+    /**
+     * 方法错误回传
+     *
+     * @return
+     */
+    public ModelMap objectFallback(JSONObject object) {
+        return new ModelMap("ERROR", "服务器开小差.....请稍后再试");
     }
 
+    /**
+     * 方法错误回传
+     *
+     * @return
+     */
+    public ModelMap parameterFallback(JSONObject object, String ipAddress) {
+        return new ModelMap("ERROR", "服务器开小差.....请稍后再试");
+    }
 }
